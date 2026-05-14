@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | MonitorX</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --danger: #f43f5e;
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.15);
+        }
+
+        /* ===== ULTRA-SMOOTH ANIMATED BACKGROUND ===== */
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            background: #0f172a;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Moving colorful blobs */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%; left: -10%;
+            width: 50%; height: 60%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            z-index: -1;
+            animation: drift 15s infinite alternate ease-in-out;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: -10%; right: -10%;
+            width: 50%; height: 60%;
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            animation: drift 12s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes drift {
+            from { transform: translate(0,0) scale(1); }
+            to { transform: translate(10%, 15%) scale(1.1); }
+        }
+
+        /* Navbar Glass */
+        .navbar {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 2rem;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== ANIMATED CARDS ===== */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem 1.5rem;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Icon Animation */
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: 0.5s;
+        }
+
+        .card:hover .icon-circle {
+            transform: rotateY(360deg);
+            background: var(--primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Buttons */
+        .btn-action {
+            border-radius: 14px;
+            font-weight: 700;
+            padding: 0.8rem;
+            border: none;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .btn-primary { background: var(--primary); }
+        .btn-danger { background: var(--danger); }
+
+        .btn-action:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Success Alert Styling */
+        #alertBox {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+            border: none;
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.5) translateY(100px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .dashboard-header h2 {
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4">
+    <div class="container-fluid">
+        <span class="navbar-brand">MonitorX</span>
+        <div class="d-flex align-items-center">
+            <span class="text-white-50 small me-4 d-none d-sm-inline">● System Secure</span>
+            <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3">Sign Out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN -->
+<div class="container mt-5 pt-4">
+
+    <div id="alertBox" class="alert alert-success d-none"></div>
+
+    <div class="text-center mb-5 dashboard-header">
+        <h2 class="display-5">User Control Panel</h2>
+        <p class="text-white-50">Real-time encrypted activity logging system.</p>
+    </div>
+
+    <div class="row justify-content-center g-5">
+
+        <!-- FILE CARD -->
+        <div class="col-md-5 col-lg-4">
+            <div class="card text-center">
+                <div class="icon-circle">📂</div>
+                <h5 class="fw-bold mb-2">File Management</h5>
+                <p class="text-white-50 small mb-4">Securely upload documents to the repository.</p>
+
+                <form action="ActivityServlet" method="POST">
+                    <input type="hidden" name="activity" value="File Uploaded">
+                    <button class="btn btn-primary btn-action w-100">Upload File</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- SECURITY CARD -->
+        <div class="col-md-5 col-lg-4">
+            <div class="card text-center">
+                <div class="icon-circle">🔑</div>
+                <h5 class="fw-bold mb-2">Security Hub</h5>
+                <p class="text-white-50 small mb-4">Update your password to stay protected.</p>
+
+                <form action="ActivityServlet" method="POST">
+                    <input type="hidden" name="activity" value="Password Changed">
+                    <button class="btn btn-danger btn-action w-100">Reset Password</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("status") === "success") {
+    const alertBox = document.getElementById("alertBox");
+    alertBox.innerHTML = `<strong>Action Logged:</strong> ${params.get("msg")}`;
+    alertBox.classList.remove("d-none");
+
+    setTimeout(() => {
+        alertBox.style.opacity = "0";
+        alertBox.style.transition = "1s";
+        setTimeout(() => alertBox.classList.add("d-none"), 1000);
+    }, 4000);
+}
+</script>
+
+</body>
+</html>
