@@ -15,6 +15,7 @@
             --accent: #22d3ee;
             --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
+            --header-bg: #2d3436; /* Dark background matching image_955df7.png */
         }
 
         body {
@@ -27,7 +28,6 @@
             padding-bottom: 50px;
         }
 
-        /* Vibrant Glowing Title */
         h2 {
             font-weight: 800;
             letter-spacing: -0.5px;
@@ -38,83 +38,84 @@
         }
 
         .monitor-card {
-            background: var(--glass);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
+            background: white; /* Changed to white background for table area to match image_955df7.png */
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             margin-top: 30px;
+            border: 1px solid var(--border);
         }
 
         .table {
-            color: #e2e8f0 !important;
             margin-bottom: 0;
             vertical-align: middle;
+            background-color: white;
         }
 
-        /* VISIBLE HEADERS SECTION */
+        /* STYLED HEADER MATCHING image_955df7.png */
         .table thead {
-            background: rgba(255, 255, 255, 0.08);
+            background-color: var(--header-bg);
         }
 
         .table thead th {
             border: none;
-            color: #ffffff !important; /* Forces bright white */
+            color: #000000 !important;
             font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
-            padding: 22px;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            padding: 15px 20px;
+            font-size: 0.9rem;
+            text-align: left;
         }
 
+        /* TABLE BODY STYLING */
         .table tbody tr {
-            border-bottom: 1px solid var(--border);
-            transition: background 0.3s ease;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s ease;
+        }
+
+        .table tbody tr:nth-of-type(even) {
+            background-color: #f9f9f9; /* Light alternating stripes */
         }
 
         .table tbody tr:hover {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(99, 102, 241, 0.05);
         }
 
         .table td {
-            padding: 20px;
+            padding: 12px 20px;
             border: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            color: #333; /* Dark text for readability on white background */
         }
 
+        /* VIBRANT ELEMENTS MAINTAINED */
         .id-text {
-            color: #818cf8;
-            font-weight: 800;
-            font-family: monospace;
+            color: #1e1b4b;
+            font-weight: 700;
         }
 
         .user-text {
-            color: #ffffff;
-            font-weight: 600;
+            color: #444;
+            font-weight: 500;
         }
 
         .action-pill {
             display: inline-block;
-            padding: 6px 14px;
-            border-radius: 10px;
+            padding: 4px 12px;
+            border-radius: 6px;
             font-size: 0.85rem;
-            font-weight: 700;
-            background: rgba(34, 211, 238, 0.15);
-            color: #22d3ee;
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+            font-weight: 600;
+            background: rgba(34, 211, 238, 0.1);
+            color: #0891b2;
+            border: 1px solid rgba(34, 211, 238, 0.2);
         }
 
         .time-text {
-            color: #94a3b8;
+            color: #666;
             font-size: 0.85rem;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
         }
     </style>
 </head>
@@ -128,10 +129,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>USER</th>
-                    <th>ACTION</th>
-                    <th>TIME</th>
+                    <th style="width: 10%;">ID</th>
+                    <th style="width: 20%;">User</th>
+                    <th style="width: 35%;">Action</th>
+                    <th style="width: 35%;">Time</th>
                 </tr>
             </thead>
             <tbody>
